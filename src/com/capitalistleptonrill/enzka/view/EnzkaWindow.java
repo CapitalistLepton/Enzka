@@ -63,7 +63,7 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 	  super.paint(g);
 	  BufferedImage img = null;
 	  try {
-		    img = ImageIO.read(new File("/Users/zanelittrell/Developer/GitHub/Enska/Enzka/src/com/capitalistleptonrill/enzka/images/" + discard.name));
+		    img = ImageIO.read(new File("/Users/zanelittrell/Developer/GitHub/Enzka/src/com/capitalistleptonrill/enzka/images/" + discard.name));
 	  } catch (IOException e) {
 	  }
 	  if(img != null) {
@@ -75,7 +75,7 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		  g.fillRect(discard.x, discard.y, discard.w, discard.h);
 	  }
 	  try {
-		    img = ImageIO.read(new File("/Users/zanelittrell/Developer/GitHub/Enska/Enzka/src/com/capitalistleptonrill/enzka/images/Enzka.png"));
+		    img = ImageIO.read(new File("/Users/zanelittrell/Developer/GitHub/Enzka/src/com/capitalistleptonrill/enzka/images/Enzka.png"));
 	  } catch (IOException e) {
 	  }
 	  //draw deck
@@ -87,12 +87,11 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		  g.setColor(Color.RED);
 		  g.fillRect(deck.x, deck.y, deck.width, deck.height);
 	  }
-	  img = null; //reset from enzka image
 	  if(cardButtons.size() < 8) {
 		  for (int i = 0; i < cardButtons.size(); i++) {
 			  	CardButton button = cardButtons.get(i);
 				try {
-				    img = ImageIO.read(new File("/Users/zanelittrell/Developer/GitHub/Enska/Enzka/src/com/capitalistleptonrill/enzka/images/" + button.name));
+				    img = ImageIO.read(new File("/Users/zanelittrell/Developer/GitHub/Enzka/src/com/capitalistleptonrill/enzka/images/" + button.name));
 				} catch (IOException e) {
 				}
 				if(img != null) {
