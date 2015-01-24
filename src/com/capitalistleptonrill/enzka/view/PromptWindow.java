@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class PromptWindow extends JFrame implements ActionListener {
@@ -65,6 +66,13 @@ public class PromptWindow extends JFrame implements ActionListener {
 		add(button);
 		this.validate();
 		this.setVisible(true);
+	}
+	
+	public PromptWindow() {
+	    JOptionPane.showMessageDialog(this,
+	        "Pass to the next player and press OK",
+	        "End of Turn",
+	        JOptionPane.PLAIN_MESSAGE);
 	}
 
 	@Override

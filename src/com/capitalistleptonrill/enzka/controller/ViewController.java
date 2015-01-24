@@ -40,12 +40,7 @@ public class ViewController implements IndexListener{
 			master.cardDrawn();
 		} else if(currentDiscard.matches(currentHand.showCard(index))) {
 			main.clearScreen();
-			/*PromptWindow next = new PromptWindow((WINDOW_WIDTH - WINDOW_X)/2, (WINDOW_HEIGHT - WINDOW_Y)/2, 250, 100);
-			while(!next.actionCompleted) {
-				try {
-					Thread.sleep(50);
-				}catch(InterruptedException ex) {}
-			}*/
+			new PromptWindow();//makes basic prompt to pass the computer
 			master.cardGiven(currentHand.getCard(index));
 		}
 	}
