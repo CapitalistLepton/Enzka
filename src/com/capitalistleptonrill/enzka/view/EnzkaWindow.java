@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import com.capitalistleptonrill.enzka.controller.ViewController;
+
 
 public class EnzkaWindow extends JFrame implements MouseListener {
 	
@@ -26,8 +28,10 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 	private Rectangle leftSideButton = new Rectangle(900, 200, 80, 100);//button to expand view
 	private Rectangle rightSideButton = new Rectangle(20, 200, 80, 100);//button to expand view
 	private int viewingIndex = 0;
-
-	public EnzkaWindow(int x, int y, int width, int height) {
+	
+	private ViewController master;
+	
+	public EnzkaWindow(int x, int y, int width, int height, ViewController creator) {
 		super("Enzka");
 		this.setBounds(x, y, width, height);
 		this.setVisible(true);
@@ -39,6 +43,8 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		
 		cardButtons = new ArrayList<CardButton>();
 		selectedButton = -1;
+		
+		master = creator;
 	}
 	
 	public void drawCardButton(int x, int y, int w, int h, String name) {
@@ -153,7 +159,8 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		
 		if(deck.contains(x, y)) {
 			selectedButton = -2;
-			cardButtons.clear();
+			//cardButtons.clear();
+			repaint();
 		}
 		if(leftSideButton.contains(x, y)) {
 			viewingIndex += 7;
@@ -167,8 +174,12 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 			CardButton button = cardButtons.get(i);
 			if(button.contains(x, y)) {
 				selectedButton = i + viewingIndex;
+				if(selectedButton != -1){
+					master.valueChanged(selectedButton);
+				}
 				break;
 			}
 		}
 	}
+
 }

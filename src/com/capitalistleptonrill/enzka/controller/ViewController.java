@@ -1,11 +1,12 @@
 package com.capitalistleptonrill.enzka.controller;
 
+import com.capitalistleptonrill.enzka.Enzka;
 import com.capitalistleptonrill.enzka.model.Card;
 import com.capitalistleptonrill.enzka.model.Deck;
 import com.capitalistleptonrill.enzka.view.EnzkaWindow;
 import com.capitalistleptonrill.enzka.view.PromptWindow;
 
-public class ViewController {
+public class ViewController implements IndexListener{
 	
 	private EnzkaWindow main;
 	private static final int WINDOW_X = 10;
@@ -15,36 +16,37 @@ public class ViewController {
 	private static final int CARD_WIDTH = 120;
 	private static final int CARD_HEIGHT = (int)(1.5*CARD_WIDTH);
 	
-	public ViewController() {
-		main = new EnzkaWindow(WINDOW_X, WINDOW_Y, WINDOW_WIDTH, WINDOW_HEIGHT);
+	private Deck currentHand;
+	private Card currentDiscard;
+	private Enzka master;
+	
+	public ViewController(Enzka creator) {
+		main = new EnzkaWindow(WINDOW_X, WINDOW_Y, WINDOW_WIDTH, WINDOW_HEIGHT, this);
+		master = creator;
 	}
 	
-	public Card displayHand(Deck hand, Card discard) {
+	public void displayHand(Deck hand, Card discard) {
 		main.drawDiscardPile(250, 100, CARD_WIDTH, CARD_HEIGHT, discard.toString() + ".png");
 		for(int i = 0; i < hand.getLength(); i++) {
 			main.drawCardButton((CARD_WIDTH+10)*i+50, 350, CARD_WIDTH, CARD_HEIGHT, hand.showCard(i).toString() + ".png");
 		}
-		int index = main.getSelectedButton();
-		while(index == -1 || !(discard.matches(hand.showCard(Math.max(0, index))))){
-			try {
-				Thread.sleep(50);
-			}catch(InterruptedException ex) {}
-			index = main.getSelectedButton();
-		}
-		
+		currentHand = hand;
+		currentDiscard = discard;
+	}
+
+	@Override
+	public void valueChanged(int index) {
 		if(index == -2) {
-			return null;
+			master.cardDrawn();
+		} else if(currentDiscard.matches(currentHand.showCard(index))) {
+			main.clearScreen();
+			/*PromptWindow next = new PromptWindow((WINDOW_WIDTH - WINDOW_X)/2, (WINDOW_HEIGHT - WINDOW_Y)/2, 250, 100);
+			while(!next.actionCompleted) {
+				try {
+					Thread.sleep(50);
+				}catch(InterruptedException ex) {}
+			}*/
+			master.cardGiven(currentHand.getCard(index));
 		}
-		
-		main.clearScreen();
-		
-		PromptWindow next = new PromptWindow((WINDOW_WIDTH - WINDOW_X)/2, (WINDOW_HEIGHT - WINDOW_Y)/2, 250, 100);
-		while(!next.actionCompleted) {
-			try {
-				Thread.sleep(50);
-			}catch(InterruptedException ex) {}
-		}
-		//pop off card to game engine
-		return hand.getCard(index);
 	}
 }
