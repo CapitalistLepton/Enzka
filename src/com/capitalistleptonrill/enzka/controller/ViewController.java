@@ -36,12 +36,15 @@ public class ViewController implements IndexListener{
 
 	@Override
 	public void valueChanged(int index) {
-		if(index == -2) {
-			master.cardDrawn();
-		} else if(currentDiscard.matches(currentHand.showCard(index))) {
+		if(currentDiscard.matches(currentHand.showCard(index))) {
 			main.clearScreen();
 			new PromptWindow();//makes basic prompt to pass the computer
 			master.cardGiven(currentHand.getCard(index));
 		}
+	}
+
+	@Override
+	public void deckPressed() {
+		master.cardDrawn();
 	}
 }

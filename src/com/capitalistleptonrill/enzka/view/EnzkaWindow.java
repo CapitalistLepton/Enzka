@@ -116,7 +116,7 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 			  }
 			  CardButton button = cardButtons.get(viewingIndex + i);
 			  try {
-				  img = ImageIO.read(new File("/Users/zanelittrell/Developer/GitHub/Enska/Enzka/src/com/capitalistleptonrill/enzka/images/" + button.name));
+				  img = ImageIO.read(new File("/Users/zanelittrell/Developer/GitHub/Enzka/src/com/capitalistleptonrill/enzka/images/" + button.name));
 			  } catch (IOException e) {
 			  }
 			  if(img != null) {
@@ -158,8 +158,8 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		int y = e.getY();
 		
 		if(deck.contains(x, y)) {
-			selectedButton = -2;
-			//cardButtons.clear();
+			master.deckPressed();
+			cardButtons.clear();
 			repaint();
 		}
 		if(leftSideButton.contains(x, y)) {

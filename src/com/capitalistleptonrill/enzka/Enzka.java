@@ -16,17 +16,23 @@ public class Enzka implements CardListener{
 	private ViewController display;
 	private int currentPlayer;
 	private boolean cardPlayed;
+	private boolean deckPressed;
 	
 	public static void main(String[] args) {
 		Enzka enzka = new Enzka();
 		enzka.currentPlayer = 0;
 		enzka.cardPlayed = false;
+		enzka.deckPressed = false;
 		while(true) {
 			enzka.display.displayHand(enzka.players[enzka.currentPlayer], enzka.discardPile.showCard(enzka.discardPile.getLength()-1));
 			while(!enzka.cardPlayed){
 				try {
 					Thread.sleep(50);
 				}catch(InterruptedException ex) {}
+				if(enzka.deckPressed) {
+					enzka.display.displayHand(enzka.players[enzka.currentPlayer], enzka.discardPile.showCard(enzka.discardPile.getLength()-1));
+					enzka.deckPressed = false;
+				}
 			}
 			enzka.cardPlayed = false;
 			enzka.currentPlayer = (enzka.currentPlayer == NUMBER_OF_PLAYERS - 1) ? 0 : enzka.currentPlayer + 1; 
@@ -65,5 +71,6 @@ public class Enzka implements CardListener{
 	@Override
 	public void cardDrawn() {
 		players[currentPlayer].addCard(gameDeck.getCard());
+		deckPressed = true;
 	}
 }
