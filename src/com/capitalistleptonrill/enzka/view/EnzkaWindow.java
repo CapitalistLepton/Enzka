@@ -69,7 +69,7 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 	  super.paint(g);
 	  BufferedImage img = null;
 	  try {
-		    img = ImageIO.read(new File("src/com/capitalistleptonrill/enzka/images/" + discard.name));
+		    img = ImageIO.read(new File("res/images/" + discard.name));
 	  } catch (IOException e) {
 	  }
 	  if(img != null) {
@@ -81,7 +81,7 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		  g.fillRect(discard.x, discard.y, discard.w, discard.h);
 	  }
 	  try {
-		    img = ImageIO.read(new File("src/com/capitalistleptonrill/enzka/images/Enzka.png"));
+		    img = ImageIO.read(new File("res/images/Enzka.png"));
 	  } catch (IOException e) {
 	  }
 	  //draw deck
@@ -97,7 +97,7 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		  for (int i = 0; i < cardButtons.size(); i++) {
 			  	CardButton button = cardButtons.get(i);
 				try {
-				    img = ImageIO.read(new File("src/com/capitalistleptonrill/enzka/images/" + button.name));
+				    img = ImageIO.read(new File("res/images/" + button.name));
 				} catch (IOException e) {
 				}
 				if(img != null) {
@@ -116,7 +116,7 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 			  }
 			  CardButton button = cardButtons.get(viewingIndex + i);
 			  try {
-				  img = ImageIO.read(new File("src/com/capitalistleptonrill/enzka/images/" + button.name));
+				  img = ImageIO.read(new File("res/images/" + button.name));
 			  } catch (IOException e) {
 			  }
 			  if(img != null) {
