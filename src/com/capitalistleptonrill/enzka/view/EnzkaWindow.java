@@ -7,13 +7,17 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import com.capitalistleptonrill.enzka.Enzka;
 import com.capitalistleptonrill.enzka.controller.ViewController;
 
 
@@ -68,8 +72,14 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 	public void paint(Graphics g) {
 	  super.paint(g);
 	  BufferedImage img = null;
+	  String path = "res/images/";
 	  try {
-		    img = ImageIO.read(new File("res/images/" + discard.name));
+		   InputStream is = getClass().getResourceAsStream("/" + path + discard.name);
+		   if(is == null) {
+			   img = ImageIO.read(new File(path + discard.name));
+		   } else {
+			   img = ImageIO.read(is);
+		   }
 	  } catch (IOException e) {
 	  }
 	  if(img != null) {
@@ -81,7 +91,12 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		  g.fillRect(discard.x, discard.y, discard.w, discard.h);
 	  }
 	  try {
-		    img = ImageIO.read(new File("res/images/Enzka.png"));
+		  InputStream is = getClass().getResourceAsStream("/" + path + "Enzka.png");
+		   if(is == null) {
+			   img = ImageIO.read(new File(path + "Enzka.png"));
+		   } else {
+			   img = ImageIO.read(is);
+		   }
 	  } catch (IOException e) {
 	  }
 	  //draw deck
@@ -97,7 +112,12 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		  for (int i = 0; i < cardButtons.size(); i++) {
 			  	CardButton button = cardButtons.get(i);
 				try {
-				    img = ImageIO.read(new File("res/images/" + button.name));
+					InputStream is = getClass().getResourceAsStream("/" + path + button.name);
+					if(is == null) {
+						img = ImageIO.read(new File(path + button.name));
+					} else {
+						img = ImageIO.read(is);
+					}
 				} catch (IOException e) {
 				}
 				if(img != null) {
@@ -116,7 +136,12 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 			  }
 			  CardButton button = cardButtons.get(viewingIndex + i);
 			  try {
-				  img = ImageIO.read(new File("res/images/" + button.name));
+				  InputStream is = getClass().getResourceAsStream("/" + path + button.name);
+					if(is == null) {
+						img = ImageIO.read(new File(path + button.name));
+					} else {
+						img = ImageIO.read(is);
+					}
 			  } catch (IOException e) {
 			  }
 			  if(img != null) {
