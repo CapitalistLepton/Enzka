@@ -93,9 +93,4 @@ public class Enzka implements CardListener{
 			players[currentPlayer + playDirection].addCard(gameDeck.getCard());
 		}
 	}
-
-	@Override
-	public void playerWild() {
-		
-	}
 }

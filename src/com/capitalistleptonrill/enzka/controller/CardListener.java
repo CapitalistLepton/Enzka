@@ -13,6 +13,4 @@ public interface CardListener {
 	public void playReversed();
 	
 	public void playerDrawCards(int numCards);
-	
-	public void playerWild();
 }
