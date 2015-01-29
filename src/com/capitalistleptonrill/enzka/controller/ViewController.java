@@ -37,7 +37,6 @@ public class ViewController implements IndexListener{
 
 	public void changeDiscardPileColor() {
 		String color = PromptWindow.askWildColor(main);
-		System.out.println(color);
 		Card blank = new Card(color, 0);
 		master.cardGiven(blank);//put a 0 card of that color on the discard pile
 	}

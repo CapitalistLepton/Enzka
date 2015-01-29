@@ -50,3 +50,4 @@ local.properties
 
 # Mac file system file
 /.DS_Store
+/Manifest

@@ -9,7 +9,6 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -69,8 +68,6 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 	public void paint(Graphics g) {
 	  super.paint(g);
 	  BufferedImage img = null;
-	  URL resource = getClass().getClassLoader().getResource("/Users/zanelittrell/Developer/GitHub/Enzka/src/com/capitalistleptonrill/enzka/images/Enzka.png");
-	  System.out.println(resource);
 	  try {
 		    img = ImageIO.read(new File("src/com/capitalistleptonrill/enzka/images/" + discard.name));
 	  } catch (IOException e) {
@@ -175,7 +172,6 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 				CardButton button = cardButtons.get(i);
 				if(button.contains(x, y)) {
 					selectedButton = i + viewingIndex;
-					System.out.println(selectedButton);
 					if(selectedButton != -1){
 						master.valueChanged(selectedButton);
 					}
