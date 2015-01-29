@@ -161,23 +161,23 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 			master.deckPressed();
 			cardButtons.clear();
 			repaint();
-		}
-		if(leftSideButton.contains(x, y)) {
+		} else if(leftSideButton.contains(x, y)) {
 			viewingIndex += 7;
 			repaint();
-		}
-		if(rightSideButton.contains(x, y)) {
+		} else if(rightSideButton.contains(x, y)) {
 			viewingIndex -= 7;
 			repaint();
-		}
-		for (int i = 0; i < cardButtons.size(); i++) {
-			CardButton button = cardButtons.get(i);
-			if(button.contains(x, y)) {
-				selectedButton = i + viewingIndex;
-				if(selectedButton != -1){
-					master.valueChanged(selectedButton);
+		} else {
+			for (int i = 0; i < cardButtons.size(); i++) {
+				CardButton button = cardButtons.get(i);
+				if(button.contains(x, y)) {
+					selectedButton = i + viewingIndex;
+					System.out.println(selectedButton);
+					if(selectedButton != -1){
+						master.valueChanged(selectedButton);
+					}
+					break;
 				}
-				break;
 			}
 		}
 	}

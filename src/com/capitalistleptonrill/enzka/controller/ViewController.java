@@ -3,6 +3,7 @@ package com.capitalistleptonrill.enzka.controller;
 import com.capitalistleptonrill.enzka.Enzka;
 import com.capitalistleptonrill.enzka.model.Card;
 import com.capitalistleptonrill.enzka.model.Deck;
+import com.capitalistleptonrill.enzka.model.EnzkaActions;
 import com.capitalistleptonrill.enzka.view.EnzkaWindow;
 import com.capitalistleptonrill.enzka.view.PromptWindow;
 
@@ -34,12 +35,35 @@ public class ViewController implements IndexListener{
 		currentDiscard = discard;
 	}
 
+	private void changeDiscardPileColor() {
+		PromptWindow window = new PromptWindow(500,200,300,200,this);
+		while(!window.actionCompleted) {
+			try {
+				Thread.sleep(50);
+			}catch(InterruptedException ex) {}
+		}
+		System.out.println(window.color);
+		//Card blank = new Card(window.color, 0);
+		//master.cardGiven(blank);//put a 0 card of that color on the discard pile
+	}
+	
 	@Override
 	public void valueChanged(int index) {
-		if(currentDiscard.matches(currentHand.showCard(index))) {
+		Card card = currentHand.showCard(index);
+		EnzkaActions act = card.getAction();
+		if(currentDiscard.matches(card)) {
 			main.clearScreen();
 			new PromptWindow();//makes basic prompt to pass the computer
 			master.cardGiven(currentHand.getCard(index));
+			if(act != EnzkaActions.NO_ACTION){
+				switch(act) {
+				case SKIP: master.playerSkipped();break;
+				case REVERSE: master.playReversed();break;
+				case DRAW_TWO: master.playerDrawCards(2);break;
+				case WILD: changeDiscardPileColor();break;
+				case WILD_DRAW_FOUR: changeDiscardPileColor();master.playerDrawCards(4);
+				}
+			}
 		}
 	}
 

@@ -33,19 +33,19 @@ public class Card {
 		return color;
 	}
 	
-	public String getAction() {
+	public EnzkaActions getAction() {
 		if(color != "Wild") {
 			switch(value) {
-			case 10: return "Skip";
-			case 11: return "Reverse";
-			case 12: return "Draw Two";
-			default: return null;
+			case 10: return EnzkaActions.SKIP;
+			case 11: return EnzkaActions.REVERSE;
+			case 12: return EnzkaActions.DRAW_TWO;
+			default: return EnzkaActions.NO_ACTION;
 			}
 		} else {
 			switch(value) {
-			case 0: return "Wild";
-			case 1: return "Draw Four";
-			default: return null;
+			case 0: return EnzkaActions.WILD;
+			case 1: return EnzkaActions.WILD_DRAW_FOUR;
+			default: return EnzkaActions.NO_ACTION;
 			}
 		}
 	}
@@ -53,8 +53,4 @@ public class Card {
 	public String toString() {
 		return color + "_" + value;
 	}
-	
-	
-
-	
 }

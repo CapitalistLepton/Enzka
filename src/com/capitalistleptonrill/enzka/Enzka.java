@@ -17,12 +17,15 @@ public class Enzka implements CardListener{
 	private int currentPlayer;
 	private boolean cardPlayed;
 	private boolean deckPressed;
+	private boolean skipNext;
+	private int playDirection;
 	
 	public static void main(String[] args) {
 		Enzka enzka = new Enzka();
 		enzka.currentPlayer = 0;
 		enzka.cardPlayed = false;
 		enzka.deckPressed = false;
+		enzka.playDirection = 1;
 		while(true) {
 			enzka.display.displayHand(enzka.players[enzka.currentPlayer], enzka.discardPile.showCard(enzka.discardPile.getLength()-1));
 			while(!enzka.cardPlayed){
@@ -35,7 +38,7 @@ public class Enzka implements CardListener{
 				}
 			}
 			enzka.cardPlayed = false;
-			enzka.currentPlayer = (enzka.currentPlayer == NUMBER_OF_PLAYERS - 1) ? 0 : enzka.currentPlayer + 1; 
+			enzka.currentPlayer = Math.abs((enzka.skipNext) ? (enzka.currentPlayer + enzka.playDirection) % NUMBER_OF_PLAYERS : (enzka.currentPlayer + enzka.playDirection*2) % NUMBER_OF_PLAYERS);
 		}
 	}
 	
@@ -72,5 +75,27 @@ public class Enzka implements CardListener{
 	public void cardDrawn() {
 		players[currentPlayer].addCard(gameDeck.getCard());
 		deckPressed = true;
+	}
+
+	@Override
+	public void playerSkipped() {
+		skipNext = true;
+	}
+
+	@Override
+	public void playReversed() {
+		playDirection = -(playDirection);
+	}
+
+	@Override
+	public void playerDrawCards(int numCards) {
+		for(int i = 0; i < numCards; i++) {
+			players[currentPlayer + playDirection].addCard(gameDeck.getCard());
+		}
+	}
+
+	@Override
+	public void playerWild() {
+		
 	}
 }
