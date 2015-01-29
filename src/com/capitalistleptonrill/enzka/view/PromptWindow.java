@@ -2,13 +2,9 @@ package com.capitalistleptonrill.enzka.view;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 
-public class PromptWindow extends JPanel {
-
-	private static final long serialVersionUID = 1L;
-
+public class PromptWindow {
 	
 	/**
 	 * Creates a PromptWindow which asks for a color
@@ -30,8 +26,8 @@ public class PromptWindow extends JPanel {
 	/**
 	 * Creates a PromptWindow which asks to pass to the next player
 	 */
-	public void askToPass() {
-	    JOptionPane.showMessageDialog(this,
+	public void askToPass(JFrame frame) {
+	    JOptionPane.showMessageDialog(frame,
 	        "Pass to the next player and press OK",
 	        "End of Turn",
 	        JOptionPane.PLAIN_MESSAGE);
