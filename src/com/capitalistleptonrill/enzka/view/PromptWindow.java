@@ -26,7 +26,7 @@ public class PromptWindow {
 	/**
 	 * Creates a PromptWindow which asks to pass to the next player
 	 */
-	public void askToPass(JFrame frame) {
+	public static void askToPass(JFrame frame) {
 	    JOptionPane.showMessageDialog(frame,
 	        "Pass to the next player and press OK",
 	        "End of Turn",

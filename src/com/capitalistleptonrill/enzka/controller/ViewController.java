@@ -48,7 +48,7 @@ public class ViewController implements IndexListener{
 		EnzkaActions act = card.getAction();
 		if(currentDiscard.matches(card)) {
 			main.clearScreen();
-			new PromptWindow();//makes basic prompt to pass the computer
+			PromptWindow.askToPass(main);
 			master.cardGiven(currentHand.getCard(index));
 			if(act != EnzkaActions.NO_ACTION){
 				switch(act) {
