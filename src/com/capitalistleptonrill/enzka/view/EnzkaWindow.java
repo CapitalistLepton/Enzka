@@ -7,17 +7,14 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-import com.capitalistleptonrill.enzka.Enzka;
 import com.capitalistleptonrill.enzka.controller.ViewController;
 
 
@@ -176,7 +173,6 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {}
 
-	//Touch up inside equivalent
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		int x = e.getX();

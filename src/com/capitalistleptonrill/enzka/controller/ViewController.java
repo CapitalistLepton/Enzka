@@ -41,6 +41,7 @@ public class ViewController implements IndexListener{
 		master.cardGiven(blank);//put a 0 card of that color on the discard pile
 	}
 	
+	@SuppressWarnings("incomplete-switch")//intentionally did not add a case for NO_ACTION
 	@Override
 	public void valueChanged(int index) {
 		Card card = currentHand.showCard(index);
