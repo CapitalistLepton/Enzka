@@ -69,11 +69,12 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 	public void paint(Graphics g) {
 	  super.paint(g);
 	  BufferedImage img = null;
-	  String path = "res/images/";
+	  String jarPath = "/images/";
+	  String testPath = "res/images/";
 	  try {
-		   InputStream is = getClass().getResourceAsStream("/" + path + discard.name);
+		   InputStream is = getClass().getResourceAsStream(jarPath + discard.name);
 		   if(is == null) {
-			   img = ImageIO.read(new File(path + discard.name));
+			   img = ImageIO.read(new File(testPath + discard.name));
 		   } else {
 			   img = ImageIO.read(is);
 		   }
@@ -88,9 +89,9 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		  g.fillRect(discard.x, discard.y, discard.w, discard.h);
 	  }
 	  try {
-		  InputStream is = getClass().getResourceAsStream("/" + path + "Enzka.png");
+		  InputStream is = getClass().getResourceAsStream(jarPath + "Enzka.png");
 		   if(is == null) {
-			   img = ImageIO.read(new File(path + "Enzka.png"));
+			   img = ImageIO.read(new File(testPath + "Enzka.png"));
 		   } else {
 			   img = ImageIO.read(is);
 		   }
@@ -109,9 +110,9 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 		  for (int i = 0; i < cardButtons.size(); i++) {
 			  	CardButton button = cardButtons.get(i);
 				try {
-					InputStream is = getClass().getResourceAsStream("/" + path + button.name);
+					InputStream is = getClass().getResourceAsStream(jarPath + button.name);
 					if(is == null) {
-						img = ImageIO.read(new File(path + button.name));
+						img = ImageIO.read(new File(testPath + button.name));
 					} else {
 						img = ImageIO.read(is);
 					}
@@ -133,9 +134,9 @@ public class EnzkaWindow extends JFrame implements MouseListener {
 			  }
 			  CardButton button = cardButtons.get(viewingIndex + i);
 			  try {
-				  InputStream is = getClass().getResourceAsStream("/" + path + button.name);
+				  InputStream is = getClass().getResourceAsStream(jarPath + button.name);
 					if(is == null) {
-						img = ImageIO.read(new File(path + button.name));
+						img = ImageIO.read(new File(testPath + button.name));
 					} else {
 						img = ImageIO.read(is);
 					}

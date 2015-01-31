@@ -49,6 +49,7 @@ local.properties
 .texlipse
 
 # Mac file system file
-/.DS_Store
+.DS_Store
 /Manifest
 /build.gradle
+build
